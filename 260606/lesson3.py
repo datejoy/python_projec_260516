@@ -25,6 +25,7 @@
 
 
 import requests
+from requests import Response
 import pandas as pd
 from pathlib import Path
 
@@ -111,12 +112,17 @@ def export_to_pdf(df: pd.DataFrame, output_path: Path) -> None:
     print(f"PDF 已產生：{output_path}")
 
 def main():
+    # 台北市 youbike 2.0 WEB API 網址
     url = "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
 
-    response = requests.get(url)
+    # 使用requests套件裡面的get()，執行後會傳出 Response 的實體
+    response:Response = requests.get(url)
 
+    # 使用 Response 中的 preperty 為 ststus_code，如果取得的數字是200則成功，反之則失敗
     if response.status_code == 200:
-        data = response.json()
+        
+        # 使用 Response 實體中的json()實體方法，會傳出list的資料結構
+        data:list[dict] = response.json()
 
         # list[dict] -> DataFrame
         df = pd.DataFrame(data)

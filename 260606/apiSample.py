@@ -6,7 +6,7 @@ from requests import Response # , Session ← 可以一次引進多個
 url:str = "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
 
 def main():
-    # python 不像C#等，需要去new Class，可以直接實體化
+    # python 不像C#等，需要去new Class，import就相當於using、new 實體化
     response:Response = requests.get(url)
     print(type(response))
 

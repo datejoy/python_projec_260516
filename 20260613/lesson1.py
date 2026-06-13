@@ -132,10 +132,14 @@ def main():
         df:pd.DataFrame = pd.DataFrame(data)
         # Iterable 可重複讀取 (list, dict, dataframe)
 
-        print(df.head(10))
-        print(df.tail(10))
+        # print(df.head(10))
+        # print(df.tail(10))
 
-        output_file = Path(__file__).with_name("youbike_report.pdf")
+        # output_file = Path(__file__).with_name("youbike_report.pdf")
+        # output path 為輸出的檔案的絕對路徑
+        output_file = Path.cwd().with_name("youbike_report.pdf")
+        
+        # 呼叫自訂function，此function目的為儲存檔案
         export_to_pdf(df, output_file)
 
     else:
